@@ -1,0 +1,32 @@
+{
+  "name": "Retail SQL Analytics (PostgreSQL)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspaces/retail-sql-analytics",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["GETTING_STARTED.md"]
+    },
+    "vscode": {
+      "extensions": [
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ],
+      "settings": {
+        "sqltools.connections": [
+          {
+            "name": "Retail portfolio database",
+            "driver": "PostgreSQL",
+            "server": "db",
+            "port": 5432,
+            "database": "retail_portfolio",
+            "username": "postgres",
+            "password": "postgres"
+          }
+        ],
+        "sqltools.useNodeRuntime": true
+      }
+    }
+  }
+}

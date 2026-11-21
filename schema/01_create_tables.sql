@@ -13,6 +13,14 @@ DROP SCHEMA IF EXISTS retail CASCADE;
 CREATE SCHEMA retail;
 SET search_path TO retail;
 
+-- Make new connections find tables without a schema prefix, so a single
+-- highlighted query runs on its own in any SQL editor.
+DO $$
+BEGIN
+    EXECUTE format('ALTER DATABASE %I SET search_path TO retail, analytics, public',
+                   current_database());
+END $$;
+
 -- Staff, with a self-referencing manager hierarchy
 CREATE TABLE employees (
     employee_id   INT PRIMARY KEY,

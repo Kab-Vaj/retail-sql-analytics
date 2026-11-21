@@ -121,6 +121,8 @@ sql-portfolio/
 │   ├── 05_window_functions.sql     Ranking, running totals, LAG/LEAD, NTILE, moving averages
 │   ├── 06_data_quality.sql         Exploratory profiling: nulls, duplicates, orphans
 │   └── 07_business_analysis.sql    The seven business questions behind the findings above
+├── .devcontainer/                  One-click GitHub Codespaces setup with PostgreSQL
+├── GETTING_STARTED.md              Beginner-friendly guide to running the project
 └── scripts/
     ├── setup.sh                    Creates the database, loads data, builds models
     ├── run_tests.sh                Builds models and runs the data tests (CI-friendly)
@@ -129,15 +131,17 @@ sql-portfolio/
 
 ## How to run it
 
-You need [PostgreSQL](https://www.postgresql.org/download/) 13 or newer.
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Kab-Vaj/retail-sql-analytics)
+
+The quickest way needs no installation: click the button above. GitHub opens the project in your browser with PostgreSQL already running, the data loaded and the tests passed. To run it on your own computer with pgAdmin instead, follow the step-by-step [Getting Started guide](GETTING_STARTED.md).
+
+If you already have PostgreSQL 13 or newer and are comfortable with a terminal:
 
 ```bash
 ./scripts/setup.sh          # create the database, load data, build the models
 ./scripts/run_tests.sh      # run all 16 data tests
 psql -d retail_portfolio -f queries/07_business_analysis.sql
 ```
-
-Or open the files in pgAdmin or DBeaver against the `retail_portfolio` database. Raw tables live in the `retail` schema and models live in `analytics`.
 
 To regenerate the data (it is deterministic, so you get the same rows), run `python3 scripts/generate_data.py`.
 
